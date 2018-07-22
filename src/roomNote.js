@@ -20,10 +20,12 @@ class RoomNoteContainer extends React.Component {
 
     render() {
         return (
-            <div className="card">
+                <div>
 
-                <div className="card">
-                    <div className="message-container">
+                    <div className="flexwrap">
+                        <AddNoteContainer
+                            submit={this.sendNote}
+                        />
                         {
                             this.props.rooms.map((el, index) =>
                                 el.id === parseInt(this.props.match.params.id)
@@ -33,13 +35,9 @@ class RoomNoteContainer extends React.Component {
                                     />
                                     : null
                             )
-                        }
-                    </div>
+                        }</div>
+
                 </div>
-                <AddNoteContainer
-                    submit={this.sendNote}
-                />
-            </div>
         )
     }
 }

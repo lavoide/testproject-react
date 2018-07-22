@@ -1,3 +1,4 @@
+
 export const SEND_NOTE = '[Note] Send';
 
 export class Actions {
@@ -6,7 +7,7 @@ export class Actions {
             type: SEND_NOTE,
             noteText,
             noteTheme,
-            date: new Date().now(),
+            date: new Date().toString().split(' ').splice(1,3).join(' '),
             roomId
         }
     }

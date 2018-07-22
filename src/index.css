@@ -17,7 +17,7 @@ body {
   resize: none;
 }
 .note p{
-
+  word-break: break-all;
 }
 .note .date{
   text-align: right;

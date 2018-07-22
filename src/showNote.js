@@ -1,8 +1,8 @@
 import React from 'react';
 
 const ShowNoteContainer = ({
-                                  notes
-                              }) => (
+                               notes
+                           }) => (
 
     notes.map((el, index) =>
         <div key={index} className='note'>

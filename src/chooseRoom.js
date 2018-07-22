@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 class ChooseRoomContainer extends Component {
-
     render() {
         return (
             <div className="card">
@@ -23,7 +22,6 @@ class ChooseRoomContainer extends Component {
                     )
                 }
             </div>
-
         );
     }
 }
