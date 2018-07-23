@@ -1,8 +1,9 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import RoomNoteContainer from "../roomNote";
-import ChooseRoomContainer from "../chooseRoom";
+import UserNoteContainer from "../userNote";
+import ChooseRoomContainer from "../chooseUser";
 import {routeName} from '../constants';
+
 
 const RootRouter = () => (
     <BrowserRouter>
@@ -10,7 +11,7 @@ const RootRouter = () => (
            <h1>notes</h1>
             <ChooseRoomContainer/>
             <Switch>
-                <Route exact path={`/${routeName.ROOM}/:${routeName.ID}`} component={RoomNoteContainer}/>
+                <Route exact path={`/${routeName.USER}/:${routeName.ID}`} component={UserNoteContainer}/>
             </Switch>
         </div>
     </BrowserRouter>

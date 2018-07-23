@@ -1,39 +1,16 @@
 import * as noteActions from "./actions";
+import {data} from "./data"
 
-const initialState = {
-    rooms: [
-        {
-            name: 'John',
-            id: 1,
-            notes: []
-        },
-        {
-            name: 'Ivan',
-            id: 2,
-            notes: []
-        },
-        {
-            name: 'Nik',
-            id: 3,
-            notes: []
-        },
-        {
-            name: 'Bill',
-            id: 4,
-            notes: []
-        }
-    ]
-};
 
-export function reducer(state = initialState, action) {
+export function reducer(state = data, action) {
     switch (action.type) {
         case noteActions.SEND_NOTE: {
-            const oldRooms = state.rooms.map((el, index) => {
-                return el.id === parseInt(action.roomId)
+            const oldUsers = state.users.map((el, index) => {
+                return el.id === parseInt(action.userId)
                     ? {
                         ...el,
                         notes: [
-                            ...state.rooms[index].notes,
+                            ...state.users[index].notes,
                             {
                                 noteText: action.noteText,
                                 noteTheme: action.noteTheme,
@@ -46,7 +23,7 @@ export function reducer(state = initialState, action) {
 
             return {
                 ...state,
-                rooms: oldRooms
+                users: oldUsers
             }
         }
         default:

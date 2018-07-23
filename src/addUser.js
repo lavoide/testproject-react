@@ -1,0 +1,58 @@
+import React, {Component} from 'react';
+import {data} from './redux/data'
+
+class AddUserContainer extends Component {
+    state = {
+        iterator: data.users.slice(-1)[0].id+1,
+        userName: '',
+        data: JSON.parse(JSON.stringify(data)),
+        user: {name:'',id:0,notes:[]}
+    };
+
+    constructor(props) {
+        super(props);
+
+        this.submit = this.submit.bind(this);
+        this.readUser = this.readUser.bind(this);
+    }
+
+    submit(evt) {
+        evt.preventDefault();
+        this.setState({
+           user:{name:this.state.userName,
+                id:this.state.iterator,
+                notes:[]
+           }
+        })
+        this.state.data.users.push(this.state.user);
+        console.log(this.state.data);
+        localStorage.setItem("data",JSON.stringify(data));
+
+        this.setState({
+            userName: '',
+            iterator: this.state.iterator+1,
+            user:[]
+        });
+        return this.props.submit(this.state.data)
+    }
+
+    readUser(evt){
+        return this.setState({
+            userName: evt.target.value
+        });
+    }
+
+
+    render() {
+        return (
+            <div className="note">
+                <form className="noteform" onSubmit={this.submit} action="#">
+                    <input type="text" onChange={this.readUser} value={this.state.userName}/>
+                    <button>send</button>
+                </form>
+            </div>
+        );
+    }
+}
+
+export default AddUserContainer;

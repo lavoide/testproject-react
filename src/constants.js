@@ -1,4 +1,4 @@
 export const routeName = {
-    ROOM: 'room',
+    USER: 'user',
     ID: 'id'
 };

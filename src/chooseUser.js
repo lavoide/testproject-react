@@ -3,18 +3,18 @@ import {routeName} from "./constants"
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
-class ChooseRoomContainer extends Component {
+class ChooseUserContainer extends Component {
     render() {
         return (
             <div className="card">
                 {
-                    this.props.rooms.map((el, index) =>
+                    this.props.users.map((el, index) =>
                         <Link
                             key={index}
-                            to={`/${routeName.ROOM}/${el.id}`}
+                            to={`/${routeName.USER}/${el.id}`}
                         >
                             <div
-                                className="choose-room-item"
+                                className="user"
                             >
                                 {el.name}
                             </div>
@@ -28,8 +28,8 @@ class ChooseRoomContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        rooms: state.rooms
+        users: state.users
     }
 }
 
-export default connect(mapStateToProps)(ChooseRoomContainer);
+export default connect(mapStateToProps)(ChooseUserContainer);

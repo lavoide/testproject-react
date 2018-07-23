@@ -4,8 +4,9 @@ import AddNoteContainer from "./addNote";
 import {connect} from "react-redux";
 import * as noteActions from './redux/actions';
 import {bindActionCreators} from "redux";
+import AddUserContainer from "./addUser";
 
-class RoomNoteContainer extends React.Component {
+class UserNoteContainer extends React.Component {
 
     constructor(props) {
         super(props);
@@ -17,18 +18,25 @@ class RoomNoteContainer extends React.Component {
     sendNote(noteText,noteTheme) {
         return this.props.sendNote(this.props.match.params.id, noteText, noteTheme);
     }
+    addUser(data){
+        console.log(data);
+        return this.props.addUser(data);
+    }
+
 
     render() {
         return (
                 <div>
-
+                    <AddUserContainer
+                        submit={this.addUser}
+                    />
                     <div className="flexwrap">
                         <AddNoteContainer
                             submit={this.sendNote}
                         />
                         {
-                            this.props.rooms.map((el, index) =>
-                                el.id === parseInt(this.props.match.params.id)
+                            this.props.users.map((el, index) =>
+                                el.id === parseInt(this.props.match.params.id,10)
                                     ? <ShowNoteContainer
                                         key={index}
                                         notes={el.notes}
@@ -44,15 +52,16 @@ class RoomNoteContainer extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        rooms: state.rooms
+        users: state.users
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        sendNote: bindActionCreators(noteActions.Actions.sendNote, dispatch)
+        sendNote: bindActionCreators(noteActions.Actions.sendNote, dispatch),
+        addUser: bindActionCreators(noteActions.Actions.addUser, dispatch)
     }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(RoomNoteContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(UserNoteContainer)
