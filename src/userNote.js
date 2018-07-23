@@ -11,15 +11,15 @@ class UserNoteContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        this.sendNote = this.sendNote.bind(this);
+        this.sendNote1 = this.sendNote1.bind(this);
+        this.addUser = this.addUser.bind(this);
     }
 
 
-    sendNote(noteText,noteTheme) {
+    sendNote1(noteText,noteTheme) {
         return this.props.sendNote(this.props.match.params.id, noteText, noteTheme);
     }
     addUser(data){
-        console.log(data);
         return this.props.addUser(data);
     }
 
@@ -32,7 +32,7 @@ class UserNoteContainer extends React.Component {
                     />
                     <div className="flexwrap">
                         <AddNoteContainer
-                            submit={this.sendNote}
+                            submit={this.sendNote1}
                         />
                         {
                             this.props.users.map((el, index) =>

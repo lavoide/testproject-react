@@ -20,12 +20,17 @@ export function reducer(state = data, action) {
                     }
                     : el
             });
-
             return {
                 ...state,
                 users: oldUsers
             }
         }
+        case noteActions.ADD_USER: {
+            state = action.users;
+            console.log(state);
+            return state;
+        }
+
         default:
             return state;
     }

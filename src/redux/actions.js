@@ -12,10 +12,10 @@ export class Actions {
             userId
         }
     }
-    static addUser(data) {
+    static addUser(users) {
         return {
             type: ADD_USER,
-            data
+            users
         }
     }
 }

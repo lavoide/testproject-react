@@ -3,10 +3,10 @@ import {data} from './redux/data'
 
 class AddUserContainer extends Component {
     state = {
-        iterator: data.users.slice(-1)[0].id+1,
+        iterator: data.users.slice(-1)[0] ? data.users.slice(-1)[0].id+1 : 0,
         userName: '',
         data: JSON.parse(JSON.stringify(data)),
-        user: {name:'',id:0,notes:[]}
+        user: []
     };
 
     constructor(props) {
@@ -18,22 +18,24 @@ class AddUserContainer extends Component {
 
     submit(evt) {
         evt.preventDefault();
-        this.setState({
-           user:{name:this.state.userName,
-                id:this.state.iterator,
-                notes:[]
-           }
-        })
-        this.state.data.users.push(this.state.user);
-        console.log(this.state.data);
-        localStorage.setItem("data",JSON.stringify(data));
+        if(this.state.userName){
+            this.state.user.name=this.state.userName;
+            this.state.user.id=this.state.iterator;
+            this.state.user.notes=[];
+            console.log(this.state.user);
+            this.state.data.users.push(this.state.user);
+            console.log(this.state.data);
+            localStorage.setItem("data",JSON.stringify(data));
 
-        this.setState({
-            userName: '',
-            iterator: this.state.iterator+1,
-            user:[]
-        });
-        return this.props.submit(this.state.data)
+            this.setState({
+                userName: '',
+                iterator: this.state.iterator+1,
+                user:[]
+            });
+            return this.props.submit(this.state.data)
+        }
+        else alert('Wrong values!');
+        evt.target.reset();
     }
 
     readUser(evt){

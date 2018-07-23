@@ -17,12 +17,15 @@ class AddNoteContainer extends Component {
 
     submit(evt) {
         evt.preventDefault();
-        this.setState({
-            noteText: '',
-            noteTheme: ''
-        });
-        return this.props.submit(this.state.noteText,this.state.noteTheme);
-
+        if(this.state.noteTheme && this.state.noteText){
+            this.setState({
+                noteText: '',
+                noteTheme: ''
+            });
+            return this.props.submit(this.state.noteText,this.state.noteTheme);
+        }
+        else alert('Wrong values!');
+        evt.target.reset();
     }
 
     readNote(evt) {
