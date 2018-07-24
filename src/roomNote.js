@@ -10,21 +10,20 @@ class RoomNoteContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        this.sendNote = this.sendNote.bind(this);
+        this.sendNote1 = this.sendNote1.bind(this);
     }
 
 
-    sendNote(noteText,noteTheme) {
+    sendNote1(noteText,noteTheme) {
         return this.props.sendNote(this.props.match.params.id, noteText, noteTheme);
     }
 
     render() {
         return (
                 <div>
-
                     <div className="flexwrap">
                         <AddNoteContainer
-                            submit={this.sendNote}
+                            submit={this.sendNote1}
                         />
                         {
                             this.props.rooms.map((el, index) =>
@@ -36,7 +35,6 @@ class RoomNoteContainer extends React.Component {
                                     : null
                             )
                         }</div>
-
                 </div>
         )
     }

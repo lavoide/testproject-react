@@ -1,5 +1,6 @@
 
 export const SEND_NOTE = '[Note] Send';
+export const DELETE_NOTE = '[Note] Delete';
 
 export class Actions {
     static sendNote(roomId, noteText, noteTheme) {
@@ -11,4 +12,11 @@ export class Actions {
             roomId
         }
     }
+    static deleteNote(noteId) {
+        return {
+            type: DELETE_NOTE,
+            noteId
+        }
+    }
+
 }
