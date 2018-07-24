@@ -11,8 +11,8 @@ class UserNoteContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        this.sendNote1 = this.sendNote1.bind(this);
         this.addUser = this.addUser.bind(this);
+        this.sendNote1 = this.sendNote1.bind(this);
     }
 
 
@@ -25,6 +25,7 @@ class UserNoteContainer extends React.Component {
 
 
     render() {
+        console.log(this.props.rooms)
         return (
                 <div>
                     <AddUserContainer
@@ -40,11 +41,11 @@ class UserNoteContainer extends React.Component {
                                     ? <ShowNoteContainer
                                         key={index}
                                         notes={el.notes}
+                                        room={this.props.match.params.id}
                                     />
                                     : null
                             )
                         }</div>
-
                 </div>
         )
     }

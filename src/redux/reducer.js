@@ -25,6 +25,18 @@ export function reducer(state = data, action) {
                 users: oldUsers
             }
         }
+        case noteActions.DELETE_NOTE:{
+            console.log(state.users[action.roomId]);
+            state.users[action.roomId].notes.map((el, index) => {
+                if(index===action.noteId)
+                {
+                    return state = state.users[action.roomId].notes.splice(index,1);
+                }
+
+            });
+
+
+        }
         case noteActions.ADD_USER: {
             state = action.users;
             console.log(state);

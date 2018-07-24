@@ -1,6 +1,8 @@
 
 export const SEND_NOTE = '[Note] Send';
+
 export const ADD_USER = '[User] Add';
+export const DELETE_NOTE = '[Note] Delete';
 
 export class Actions {
     static sendNote(userId, noteText, noteTheme) {
@@ -18,4 +20,12 @@ export class Actions {
             users
         }
     }
+    static deleteNote(noteId,roomId) {
+        return {
+            type: DELETE_NOTE,
+            noteId,
+            roomId
+        }
+    }
+
 }
