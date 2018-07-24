@@ -12,10 +12,11 @@ export class Actions {
             roomId
         }
     }
-    static deleteNote(noteId) {
+    static deleteNote(noteId,roomId) {
         return {
             type: DELETE_NOTE,
-            noteId
+            noteId,
+            roomId
         }
     }
 

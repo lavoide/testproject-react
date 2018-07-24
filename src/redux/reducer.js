@@ -50,19 +50,16 @@ export function reducer(state = initialState, action) {
             }
         }
         case noteActions.DELETE_NOTE:{
-            console.log(state.rooms[0]);
-            state.rooms[0].notes.map((el, index) => {
+            console.log(state.rooms[action.roomId]);
+            state.rooms[action.roomId].notes.map((el, index) => {
                 if(index===action.noteId)
                 {
-                    state.rooms[0].notes.splice(index,1);
+                    return state = state.rooms[action.roomId].notes.splice(index,1);
                 }
 
             });
 
-            return {
-                ...state
-            }
-            // return action.noteId
+
         }
         default:
             return state;

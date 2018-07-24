@@ -19,6 +19,7 @@ class RoomNoteContainer extends React.Component {
     }
 
     render() {
+        console.log(this.props.rooms)
         return (
                 <div>
                     <div className="flexwrap">
@@ -31,6 +32,7 @@ class RoomNoteContainer extends React.Component {
                                     ? <ShowNoteContainer
                                         key={index}
                                         notes={el.notes}
+                                        room={this.props.match.params.id}
                                     />
                                     : null
                             )

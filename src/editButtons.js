@@ -6,12 +6,16 @@ import {connect} from "react-redux";
 class EditButtons extends Component {
     constructor(props) {
         super(props);
-
         this.deleteNote1 = this.deleteNote1.bind(this);
+
+        this.state={
+            room:props.room-1
+        }
+
     }
 
     deleteNote1() {
-        return this.props.deleteNote(this.props.id);
+        return this.props.deleteNote(this.props.id,this.state.room);
     }
     render(){
         return(
