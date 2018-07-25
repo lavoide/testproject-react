@@ -5,17 +5,19 @@ import {connect} from "react-redux";
 import * as noteActions from './redux/actions';
 import {bindActionCreators} from "redux";
 
-
 class UserNoteContainer extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.sendNote1 = this.sendNote1.bind(this);
     }
 
     sendNote1(noteText,noteTheme,noteColor) {
         return this.props.sendNote(this.props.match.params.id, noteText, noteTheme, noteColor);
     }
+
+
 
     render() {
         return (

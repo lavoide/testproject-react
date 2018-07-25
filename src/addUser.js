@@ -29,7 +29,7 @@ class AddUserContainer extends Component {
                 iterator: this.state.iterator+1,
                 user:[]
             });
-            return this.props.submit(this.state.data)
+            return this.props.submit(this.state.user)
         }
         else alert('Wrong values!');
         evt.target.reset();

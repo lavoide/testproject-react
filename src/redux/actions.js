@@ -1,8 +1,11 @@
 
 export const ADD_NOTE = '[Note] Add';
-
 export const ADD_USER = '[User] Add';
 export const DELETE_NOTE = '[Note] Delete';
+export const EDIT_NOTE = '[Note] Edit';
+export const READ_NOTE = '[Note] Text Updated';
+export const READ_THEME = '[Note] Theme Updated';
+export const READ_COLOR = '[Note] Color Updated';
 
 export class Actions {
     static addNote(userId, noteText, noteTheme, noteColor) {
@@ -28,5 +31,29 @@ export class Actions {
             userId
         }
     }
-
+    static editNote(noteId,userId) {
+        return {
+            type: EDIT_NOTE,
+            noteId,
+            userId
+        }
+    }
+    static readNote(noteText) {
+        return {
+            type: READ_NOTE,
+            noteText
+        }
+    }
+    static readTheme(noteTheme) {
+        return {
+            type: READ_THEME,
+            noteTheme
+        }
+    }
+    static readColor(noteColor) {
+        return {
+            type: READ_COLOR,
+            noteColor
+        }
+    }
 }

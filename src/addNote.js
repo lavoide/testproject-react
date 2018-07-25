@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import {color} from './constants'
+import {connect} from "react-redux";
+import * as noteActions from "./redux/actions";
+import {bindActionCreators} from "redux";
 
 class AddNoteContainer extends Component {
-
-    state = {
-        noteText: '',
-        noteTheme:'',
-        noteColor:color.YELLOW
-    };
 
     constructor(props) {
         super(props);
@@ -20,51 +17,45 @@ class AddNoteContainer extends Component {
 
     submit(evt) {
         evt.preventDefault();
-        if(this.state.noteTheme && this.state.noteText){
-            this.setState({
-                noteText: '',
-                noteTheme: ''
-            });
-            return this.props.submit(this.state.noteText,this.state.noteTheme,this.state.noteColor);
+        if(this.props.noteTheme && this.props.noteText){
+            this.props.submit(this.props.noteText,this.props.noteTheme,this.props.noteColor);
+            this.props.readNote('');
+            this.props.readTheme('');
+            this.props.readColor(color.YELLOW);
         }
         else alert('Wrong values!');
-        evt.target.reset();
     }
 
     readNote(evt) {
-        return this.setState({
-            noteText: evt.target.value
-        });
+        return this.props.readNote(evt.target.value);
     }
     readTheme(evt){
-        return this.setState({
-            noteTheme: evt.target.value
-        });
+        return this.props.readTheme(evt.target.value);
     }
     readColor(evt){
         switch(evt.target.value) {
-            case color.BLUE:return this.setState({
-               noteColor: color.BLUE
-           });
-            case color.RED:return this.setState({
-                noteColor: color.RED
-            });
-            case color.GREEN:return this.setState({
-                noteColor: color.GREEN
-            });
-            case color.YELLOW:return this.setState({
-                noteColor: color.YELLOW
-            });
+            case color.BLUE:
+                return this.props.readColor(color.BLUE);
+            case color.RED:
+                return this.props.readColor(color.RED);
+            case color.GREEN:
+                return this.props.readColor(color.GREEN);
+            case color.YELLOW:
+                return this.props.readColor(color.YELLOW);
+            default:
+                return this.props.readColor(color.YELLOW);
         }
     }
-
+    componentDidMount(){
+        return this.props.readColor(color.YELLOW);
+    }
     render() {
         return (
-            <div className={`note ${this.state.noteColor}`}>
-                <form className="noteform" onSubmit={this.submit} action="#">
-                    <p>Theme: <input type="text" className={`${this.state.noteColor}`} onChange={this.readTheme} value={this.state.noteTheme}/></p>
-                    <textarea className={`${this.state.noteColor}`} onChange={this.readNote} placeholder="Your note text..."
-                               value={this.state.noteText} name="note" id="note">{this.state.noteText}</textarea>
+            <div className={`note ${this.props.noteColor}`}>
+                <form className="noteform" onSubmit={this.submit} action="#" >
+                    <p>Theme: <input type="text" className={`${this.props.noteColor}`} onChange={this.readTheme} value={this.props.noteTheme}/></p>
+                    <textarea className={`${this.props.noteColor}`} onChange={this.readNote} placeholder="Your note text..."
+                               value={this.props.noteText} name="note" id="note">{this.props.noteText}</textarea>
                     <ul>
                         <li>
                             <input type="radio" id="1" className="radio" name="gender" value="green" onChange={this.readColor} />
@@ -91,4 +82,22 @@ class AddNoteContainer extends Component {
     }
 }
 
-export default AddNoteContainer;
+function mapStateToProps(state) {
+    return {
+        noteText: state.noteText,
+        noteTheme: state.noteTheme,
+        noteColor: state.noteColor,
+        editedNote: state.editedNote
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        readNote: bindActionCreators(noteActions.Actions.readNote, dispatch),
+        readTheme: bindActionCreators(noteActions.Actions.readTheme, dispatch),
+        readColor: bindActionCreators(noteActions.Actions.readColor, dispatch)
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(AddNoteContainer);
+
+

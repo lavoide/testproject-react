@@ -2,7 +2,6 @@ import React from 'react';
 import EditButtons from "./editButtons";
 
 class ShowNoteContainer extends React.Component{
-
     render(){
         return(this.props.notes.map((el, index) =>
             <div key={index} className={`note ${el.noteColor}`} >
