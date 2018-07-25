@@ -19,9 +19,9 @@ class EditButtons extends Component {
     }
     render(){
         return(
-            <div className="buttons">
-                <button onClick={this.editHandler}>edit</button>
-                <button onClick={this.deleteNote1} >delete</button>
+            <div className="editbuttons">
+                <button className="button" onClick={this.editHandler}>edit</button>
+                <button className="button" onClick={this.deleteNote1} >X</button>
             </div>)
     }
 }

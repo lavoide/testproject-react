@@ -62,21 +62,25 @@ class AddNoteContainer extends Component {
         return (
             <div className={`note ${this.state.noteColor}`}>
                 <form className="noteform" onSubmit={this.submit} action="#">
-                    <p>Theme: <input type="text" onChange={this.readTheme} value={this.state.noteTheme}/></p>
+                    <p>Theme: <input type="text" className={`${this.state.noteColor}`} onChange={this.readTheme} value={this.state.noteTheme}/></p>
                     <textarea className={`${this.state.noteColor}`} onChange={this.readNote} placeholder="Your note text..."
                                value={this.state.noteText} name="note" id="note">{this.state.noteText}</textarea>
                     <ul>
                         <li>
-                            <input type="radio" name="gender" value="green" onChange={this.readColor} />green
+                            <input type="radio" id="1" className="radio" name="gender" value="green" onChange={this.readColor} />
+                            <label htmlFor="1" className="label1">green</label>
                         </li>
                         <li>
-                            <input type="radio" name="gender" value="blue" onChange={this.readColor}/>blue
+                            <input type="radio" id="2" className="radio" name="gender" value="blue" onChange={this.readColor}/>
+                            <label htmlFor="2" className="label2">blue</label>
                         </li>
                         <li>
-                            <input type="radio" name="gender" value="red" onChange={this.readColor}/>red
+                            <input type="radio" id="3" className="radio" name="gender" value="red" onChange={this.readColor}/>
+                            <label htmlFor="3" className="label3">red</label>
                         </li>
                         <li>
-                            <input type="radio" name="gender" value="yellow" onChange={this.readColor} defaultChecked/>yellow
+                            <input type="radio" id="4" className="radio" name="gender" value="yellow" onChange={this.readColor} defaultChecked/>
+                            <label htmlFor="4" className="label4">yellow</label>
                         </li>
                     </ul>
                     <button className="button">add</button>

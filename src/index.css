@@ -16,22 +16,36 @@ body {
   border-radius: 15px;
   border: 1px solid lightgrey;
   position: relative;
+  padding-top: 21px;
 }
 .note .date{
   position: absolute;
   bottom: 10px;
-  right: 10px
+  right: 7px;
+  font-size: 15px;
 }
 .note .notetext{
   margin-bottom: 25px;
   font-style: italic;
 }
+.note h3{
+  display: block;
+  border-bottom: 2px dotted #4b464b;
+  margin-top: 5px;
+}
 .noteform p{
   margin-top: 3px;
   margin-bottom: 3px;
 }
-.noteform input[type=text]{
+.noteform button{
+  position: absolute;
+  bottom: 10px;
+  left: 50px;
+}
+.noteform p input[type=text]{
   margin-bottom: 5px;
+  border: 0;
+  border-bottom: 1px solid #4b464b;
 }
 .noteform ul{
   float:right;
@@ -50,14 +64,11 @@ input[type=text], textarea {
   outline: none;
   border: 1px solid #bfbfbf;
 }
-input[type=text]:focus, textarea:focus {
+textarea:focus {
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
   border: 1px solid rgba(81, 203, 238, 1);
 }
-.note h3{
-  display: block;
-  border-bottom: 2px dotted black;
-}
+
 .yellow{
   background-color: #ffe2a8;
 }
@@ -75,6 +86,7 @@ input[type=text]:focus, textarea:focus {
   resize: none;
 }
 .note p{
+  min-width: 85px;
   word-break: break-all;
 }
 .note .date{
@@ -82,9 +94,6 @@ input[type=text]:focus, textarea:focus {
   margin: 0;
 }
 .button {
-  position: absolute;
-  bottom: 10px;
-  left: 50px;
   background: #a3999e;
   border-radius: 7px;
   padding: 5px 20px;
@@ -93,9 +102,16 @@ input[type=text]:focus, textarea:focus {
   text-transform: uppercase;
   text-decoration: none;
   border: none;
-
 }
-
+.editbuttons{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.editbuttons .button{
+  padding: 1.5px 4px;
+  font-size: 12px;
+}
 /* Hover state animation applied here */
 .button:hover {
   -webkit-animation: hover 1200ms linear 2 alternate;
@@ -201,4 +217,62 @@ input[type=text]:focus, textarea:focus {
   96% { -webkit-transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   100% { -webkit-transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
 }
+
+.label1,
+.label2,
+.label3,
+.label4{
+  display: inline;
+  align-items: center;
+  padding: 5px 0;
+  margin-top: 5px;
+  color: #4b464b;
+  cursor: pointer;
+  transition: all 0.25s linear;
+}
+.label1:hover,
+.label2:hover,
+.label3:hover,
+.label4:hover{
+  color: #b4b4b4;
+}
+.label1::before,
+.label2::before,
+.label3::before,
+.label4::before{
+  display: inline-block;
+  content: "";
+  height: 6px;
+  width: 6px;
+  margin-right: 4px;
+  margin-top: 2px;
+  border: 3px solid #a3999e;
+  border-radius: 50%;
+  transition: all 0.25s linear;
+}
+.radio {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+.radio:checked + .label1,
+.radio:checked + .label2,
+.radio:checked + .label3,
+.radio:checked + .label4{
+  font-style: italic;
+}
+
+.radio:checked + .label1::before{
+  background: green;
+}
+.radio:checked + .label2::before{
+  background: blue;
+}
+.radio:checked + .label3::before{
+  background: red;
+}
+.radio:checked + .label4::before{
+  background: yellow;
+}
+
 
