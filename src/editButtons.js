@@ -9,25 +9,31 @@ class EditButtons extends Component {
         this.deleteNote1 = this.deleteNote1.bind(this);
 
         this.state={
-            room:props.room-1
+            user:props.user
         }
-
     }
 
     deleteNote1() {
-        return this.props.deleteNote(this.props.id,this.state.room);
+        if(window.confirm("Do you really want to delete this note?"))
+            return this.props.deleteNote(this.props.id,this.state.user);
     }
     render(){
         return(
             <div className="buttons">
                 <button onClick={this.editHandler}>edit</button>
-                <button onClick={this.deleteNote1}>delete</button>
+                <button onClick={this.deleteNote1} >delete</button>
             </div>)
     }
 }
+function mapStateToProps(state) {
+    return {
+        users: state.users
+    }
+}
+
 function mapDispatchToProps(dispatch) {
     return {
         deleteNote: bindActionCreators(noteActions.Actions.deleteNote, dispatch)
     }
 }
-export default connect(null,mapDispatchToProps)(EditButtons);
+export default connect(mapStateToProps,mapDispatchToProps)(EditButtons);

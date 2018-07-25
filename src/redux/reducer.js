@@ -4,9 +4,9 @@ import {data} from "./data"
 
 export function reducer(state = data, action) {
     switch (action.type) {
-        case noteActions.SEND_NOTE: {
+        case noteActions.ADD_NOTE: {
             const oldUsers = state.users.map((el, index) => {
-                return el.id === parseInt(action.userId)
+                return el.id === parseInt(action.userId,10)
                     ? {
                         ...el,
                         notes: [
@@ -14,6 +14,7 @@ export function reducer(state = data, action) {
                             {
                                 noteText: action.noteText,
                                 noteTheme: action.noteTheme,
+                                noteColor: action.noteColor,
                                 date: action.date
                             }
                         ]
@@ -26,16 +27,22 @@ export function reducer(state = data, action) {
             }
         }
         case noteActions.DELETE_NOTE:{
-            console.log(state.users[action.roomId]);
-            state.users[action.roomId].notes.map((el, index) => {
-                if(index===action.noteId)
-                {
-                    return state = state.users[action.roomId].notes.splice(index,1);
+            const oldUsers1 = state.users.map((el, index) => {
+                if(el.id === parseInt(action.userId,10)){
+                    state.users[action.userId].notes.splice(action.noteId,1);
+                    return {
+                        ...el,
+                        notes: state.users[action.userId].notes
+                    }
+                } else {
+                    return el;
                 }
 
             });
-
-
+            return {
+                ...state,
+                users: oldUsers1
+            }
         }
         case noteActions.ADD_USER: {
             state = action.users;

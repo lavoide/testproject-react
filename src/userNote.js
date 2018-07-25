@@ -4,33 +4,22 @@ import AddNoteContainer from "./addNote";
 import {connect} from "react-redux";
 import * as noteActions from './redux/actions';
 import {bindActionCreators} from "redux";
-import AddUserContainer from "./addUser";
+
 
 class UserNoteContainer extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.addUser = this.addUser.bind(this);
         this.sendNote1 = this.sendNote1.bind(this);
     }
 
-
-    sendNote1(noteText,noteTheme) {
-        return this.props.sendNote(this.props.match.params.id, noteText, noteTheme);
+    sendNote1(noteText,noteTheme,noteColor) {
+        return this.props.sendNote(this.props.match.params.id, noteText, noteTheme, noteColor);
     }
-    addUser(data){
-        return this.props.addUser(data);
-    }
-
 
     render() {
-        console.log(this.props.rooms)
         return (
                 <div>
-                    <AddUserContainer
-                        submit={this.addUser}
-                    />
                     <div className="flexwrap">
                         <AddNoteContainer
                             submit={this.sendNote1}
@@ -41,7 +30,7 @@ class UserNoteContainer extends React.Component {
                                     ? <ShowNoteContainer
                                         key={index}
                                         notes={el.notes}
-                                        room={this.props.match.params.id}
+                                        user={this.props.match.params.id}
                                     />
                                     : null
                             )
@@ -59,8 +48,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        sendNote: bindActionCreators(noteActions.Actions.sendNote, dispatch),
-        addUser: bindActionCreators(noteActions.Actions.addUser, dispatch)
+        sendNote: bindActionCreators(noteActions.Actions.addNote, dispatch),
     }
 }
 

@@ -2,15 +2,13 @@ import React from 'react';
 import EditButtons from "./editButtons";
 
 class ShowNoteContainer extends React.Component{
-    constructor(props) {
-        super(props);
-    }
+
     render(){
         return(this.props.notes.map((el, index) =>
-            <div key={index} className='note'>
-                <EditButtons id={index} room={this.props.room}/>
+            <div key={index} className={`note ${el.noteColor}`} >
+                <EditButtons id={index} user={this.props.user}/>
                 <h3>{el.noteTheme}</h3>
-                <p>{el.noteText}</p>
+                <p className="notetext">{el.noteText}</p>
                 <p className="date">{el.date}</p>
             </div>))
     }

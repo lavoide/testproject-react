@@ -22,10 +22,7 @@ class AddUserContainer extends Component {
             this.state.user.name=this.state.userName;
             this.state.user.id=this.state.iterator;
             this.state.user.notes=[];
-            console.log(this.state.user);
             this.state.data.users.push(this.state.user);
-            console.log(this.state.data);
-            localStorage.setItem("data",JSON.stringify(data));
 
             this.setState({
                 userName: '',

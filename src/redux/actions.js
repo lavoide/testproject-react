@@ -1,15 +1,16 @@
 
-export const SEND_NOTE = '[Note] Send';
+export const ADD_NOTE = '[Note] Add';
 
 export const ADD_USER = '[User] Add';
 export const DELETE_NOTE = '[Note] Delete';
 
 export class Actions {
-    static sendNote(userId, noteText, noteTheme) {
+    static addNote(userId, noteText, noteTheme, noteColor) {
         return {
-            type: SEND_NOTE,
+            type: ADD_NOTE,
             noteText,
             noteTheme,
+            noteColor,
             date: new Date().toString().split(' ').splice(1,3).join(' '),
             userId
         }
@@ -20,11 +21,11 @@ export class Actions {
             users
         }
     }
-    static deleteNote(noteId,roomId) {
+    static deleteNote(noteId,userId) {
         return {
             type: DELETE_NOTE,
             noteId,
-            roomId
+            userId
         }
     }
 
