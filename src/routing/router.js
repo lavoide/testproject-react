@@ -8,19 +8,15 @@ import * as noteActions from "../redux/actions";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {browserHistory} from 'react-routing';
-
+import HomeButton from "../homeButton"
 class RootRouter extends React.Component{
     constructor(props) {
         super(props);
-        this.state={
-            show: ""
-        };
         this.addUser = this.addUser.bind(this);
     }
 
     addUser(user){
-        this.setState({show:"none"});
-
+        this.props.changeVis("none");
         return this.props.addUser(user);
     }
     render(){
@@ -29,18 +25,16 @@ class RootRouter extends React.Component{
                 <header className="header">
                     <div className="wrap">
                         <div className="logo"><a href="#"><h1>Note App</h1></a></div>
-                        <button onClick>home</button>
+                        <HomeButton/>
                     </div>
                 </header>
-                <div className={`addUser ${this.state.show}`}>
+                <div className={`addUser ${this.props.loginVisibility}`}>
                     <AddUserContainer
                         submit={this.addUser}
                     />
                 </div>
                 <ChooseUserContainer/>
-                <Switch>
-                    <Route exact path={`/${routeName.USER}/:${routeName.ID}`} component={UserNoteContainer}/>
-                </Switch>
+                <Route exact path={`/${routeName.USER}/:${routeName.ID}`} component={UserNoteContainer}/>
             </div>
         </BrowserRouter>)
     }
@@ -48,13 +42,15 @@ class RootRouter extends React.Component{
 
 function mapStateToProps(state) {
     return {
-        users: state.users
+        users: state.users,
+        loginVisibility: state.loginVisibility
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        addUser: bindActionCreators(noteActions.Actions.addUser, dispatch)
+        addUser: bindActionCreators(noteActions.Actions.addUser, dispatch),
+        changeVis: bindActionCreators(noteActions.Actions.changeVis, dispatch),
     }
 }
 

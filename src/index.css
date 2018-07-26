@@ -22,7 +22,7 @@ header{
   font-family: sans-serif;
   text-transform: uppercase;
   margin: 0 0 0 2%;
-  width: 25%;
+  width: 72%;
   float:left;
 }
 .logo a{
@@ -56,25 +56,43 @@ header{
 .none{
   display: none;
 }
+.active{
+    display: flex;
+}
+.home{
+    float: right;
+    border: 0;
+    border-radius: 15px;
+    background-color: transparent;
+    color: white;
+    font-size: 40px;
+    outline: none;
+    margin: 10px 15px 0 0;
+}
+.home:hover{
+    cursor: pointer;
+    background-color: whitesmoke;
+    color: black
+}
 .login{
-  display:flex;
-  align-items: center;
-  background-color: rgba(31, 31, 37, 0.69);
-  border-radius: 20px;
-  width: 50%;
-  min-width: 350px;
-  height: 50vh;
-  margin: 0 auto;
+    display:flex;
+    align-items: center;
+    background-color: rgba(31, 31, 37, 0.69);
+    border-radius: 20px;
+    height: 50vh;
+}
+.loginForm{
+    margin: 0 17vmin 0 17vmin;
 }
 .loginForm p{
-  margin:10px 5vw 10px 5vw;
+  margin: 20px 0 10px 10px;
   color: whitesmoke;
 }
 .loginForm input[type="text"],
 .loginForm input[type="password"]{
-  width: 40vw;
+  width: 90%;
   height: 30px;
-  margin: 0 5vw 0 5vw;
+  margin: 0 5% 0 5%;
   background-color: rgba(0,0,0,0);
   border: 1px solid whitesmoke;
   border-radius: 7px;

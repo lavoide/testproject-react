@@ -6,6 +6,7 @@ export const EDIT_NOTE = '[Note] Edit';
 export const READ_NOTE = '[Note] Text Updated';
 export const READ_THEME = '[Note] Theme Updated';
 export const READ_COLOR = '[Note] Color Updated';
+export const LOGIN_LOGOUT = '[Form] Visibility Changed';
 
 export class Actions {
     static addNote(userId, noteText, noteTheme, noteColor) {
@@ -54,6 +55,12 @@ export class Actions {
         return {
             type: READ_COLOR,
             noteColor
+        }
+    }
+    static changeVis(vis){
+        return {
+            type: LOGIN_LOGOUT,
+            vis
         }
     }
 }

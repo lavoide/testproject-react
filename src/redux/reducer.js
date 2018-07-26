@@ -90,6 +90,12 @@ export function reducer(state = data, action) {
                 noteColor: action.noteColor
             }
         }
+        case noteActions.LOGIN_LOGOUT: {
+            return{
+                ...state,
+                loginVisibility: action.vis
+            }
+        }
         default:
             return state;
     }

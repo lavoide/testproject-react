@@ -7,7 +7,6 @@ class AddUserContainer extends Component {
         iterator: data.users.slice(-1)[0] ? data.users.slice(-1)[0].id+1 : 0,
         userName: '',
         user: []
-
     };
 
     constructor(props) {
