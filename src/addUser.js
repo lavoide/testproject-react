@@ -5,8 +5,8 @@ class AddUserContainer extends Component {
     state = {
         iterator: data.users.slice(-1)[0] ? data.users.slice(-1)[0].id+1 : 0,
         userName: '',
-        data: JSON.parse(JSON.stringify(data)),
         user: []
+
     };
 
     constructor(props) {
@@ -22,7 +22,6 @@ class AddUserContainer extends Component {
             this.state.user.name=this.state.userName;
             this.state.user.id=this.state.iterator;
             this.state.user.notes=[];
-            this.state.data.users.push(this.state.user);
 
             this.setState({
                 userName: '',
@@ -44,9 +43,17 @@ class AddUserContainer extends Component {
 
     render() {
         return (
-            <div className="note">
-                <form className="noteform" onSubmit={this.submit} action="#">
-                    <input type="text" onChange={this.readUser} value={this.state.userName}/>
+            <div className="login">
+                <form className="loginform" onSubmit={this.submit} action="#">
+                    <p>
+                        <label htmlFor="login">Login:</label>
+                    </p>
+                    <input type="text" id="login" onChange={this.readUser} value={this.state.userName}/>
+                    <p>
+                        <label htmlFor="password">Password:</label>
+                    </p>
+                    <input type="text" id="password"/>
+
                     <button>send</button>
                 </form>
             </div>

@@ -37,7 +37,6 @@ export function reducer(state = data, action) {
                 } else {
                     return el;
                 }
-
             });
             return {
                 ...state,
@@ -46,7 +45,7 @@ export function reducer(state = data, action) {
         }
         case noteActions.ADD_USER: {
             state.users.push(action.users);
-            return state;
+            return {...state};
         }
         case noteActions.EDIT_NOTE: {
             const oldUsers1 = state.users.map((el, index) => {

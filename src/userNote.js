@@ -10,11 +10,11 @@ class UserNoteContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        this.sendNote1 = this.sendNote1.bind(this);
+        this.addNote1 = this.addNote1.bind(this);
     }
 
-    sendNote1(noteText,noteTheme,noteColor) {
-        return this.props.sendNote(this.props.match.params.id, noteText, noteTheme, noteColor);
+    addNote1(noteText,noteTheme,noteColor) {
+        return this.props.addNote(this.props.match.params.id, noteText, noteTheme, noteColor);
     }
 
 
@@ -24,7 +24,7 @@ class UserNoteContainer extends React.Component {
                 <div>
                     <div className="flexwrap">
                         <AddNoteContainer
-                            submit={this.sendNote1}
+                            submit={this.addNote1}
                         />
                         {
                             this.props.users.map((el, index) =>
@@ -50,7 +50,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        sendNote: bindActionCreators(noteActions.Actions.addNote, dispatch),
+        addNote: bindActionCreators(noteActions.Actions.addNote, dispatch),
     }
 }
 

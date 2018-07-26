@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import UserNoteContainer from "../userNote";
-import ChooseRoomContainer from "../chooseUser";
+import ChooseUserContainer from "../chooseUser";
 import {routeName} from '../constants';
 import AddUserContainer from "../addUser";
 import * as noteActions from "../redux/actions";
@@ -12,21 +12,26 @@ import {connect} from "react-redux";
 class RootRouter extends React.Component{
     constructor(props) {
         super(props);
-
+        this.state={
+            show: ""
+        };
         this.addUser = this.addUser.bind(this);
     }
 
     addUser(data){
+        this.setState({show:"none"});
+
         return this.props.addUser(data);
     }
     render(){
         return( <BrowserRouter>
             <div className="app">
-                <h1>notes</h1>
-                <AddUserContainer
-                    submit={this.addUser}
-                />
-                <ChooseRoomContainer/>
+                <div className={`addUser ${this.state.show}`}>
+                    <AddUserContainer
+                        submit={this.addUser}
+                    />
+                </div>
+                <ChooseUserContainer/>
                 <Switch>
                     <Route exact path={`/${routeName.USER}/:${routeName.ID}`} component={UserNoteContainer}/>
                 </Switch>
