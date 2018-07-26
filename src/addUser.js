@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {data} from './redux/data'
+import {data} from './redux/data';
+import {withRouter} from "react-router-dom";
 
 class AddUserContainer extends Component {
     state = {
@@ -14,17 +15,20 @@ class AddUserContainer extends Component {
 
         this.submit = this.submit.bind(this);
         this.readUser = this.readUser.bind(this);
+        this.readPass = this.readPass.bind(this);
     }
 
     submit(evt) {
         evt.preventDefault();
         if(this.state.userName){
             this.state.user.name=this.state.userName;
+            this.state.user.password=this.state.userPass;
             this.state.user.id=this.state.iterator;
             this.state.user.notes=[];
-
+            this.props.history.push(`/user/${this.state.iterator}`);
             this.setState({
                 userName: '',
+                userPass: '',
                 iterator: this.state.iterator+1,
                 user:[]
             });
@@ -39,12 +43,16 @@ class AddUserContainer extends Component {
             userName: evt.target.value
         });
     }
-
+    readPass(evt){
+        return this.setState({
+            userPass: evt.target.value
+        });
+    }
 
     render() {
         return (
             <div className="login">
-                <form className="loginform" onSubmit={this.submit} action="#">
+                <form className="loginForm" onSubmit={this.submit} action="#">
                     <p>
                         <label htmlFor="login">Login:</label>
                     </p>
@@ -52,13 +60,14 @@ class AddUserContainer extends Component {
                     <p>
                         <label htmlFor="password">Password:</label>
                     </p>
-                    <input type="text" id="password"/>
-
-                    <button>send</button>
+                    <input type="password" id="password" onChange={this.readPass} value={this.state.userPass}/>
+                    <p className="center">
+                        <button className="button">Register</button>
+                    </p>
                 </form>
             </div>
         );
     }
 }
 
-export default AddUserContainer;
+export default withRouter(AddUserContainer);

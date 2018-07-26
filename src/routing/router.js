@@ -7,7 +7,7 @@ import AddUserContainer from "../addUser";
 import * as noteActions from "../redux/actions";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-
+import {browserHistory} from 'react-routing';
 
 class RootRouter extends React.Component{
     constructor(props) {
@@ -18,14 +18,20 @@ class RootRouter extends React.Component{
         this.addUser = this.addUser.bind(this);
     }
 
-    addUser(data){
+    addUser(user){
         this.setState({show:"none"});
 
-        return this.props.addUser(data);
+        return this.props.addUser(user);
     }
     render(){
-        return( <BrowserRouter>
+        return( <BrowserRouter history={browserHistory}>
             <div className="app">
+                <header className="header">
+                    <div className="wrap">
+                        <div className="logo"><a href="#"><h1>Note App</h1></a></div>
+                        <button onClick>home</button>
+                    </div>
+                </header>
                 <div className={`addUser ${this.state.show}`}>
                     <AddUserContainer
                         submit={this.addUser}
