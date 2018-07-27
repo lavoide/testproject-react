@@ -20,8 +20,7 @@ class AddUserContainer extends Component {
     }
     login(e){
         e.preventDefault();
-        if(this.props.hasUser>=0){
-            this.props.userLogin(this.props.userName,this.props.userPass);
+        if((this.props.hasUser>0)&&(this.props.hasPassword>0)&&(this.props.hasUser===this.props.hasPassword)) {
             this.props.history.push(`/user/${this.props.hasUser}`);
             this.setState({
                 iterator: this.state.iterator+1,
@@ -32,7 +31,7 @@ class AddUserContainer extends Component {
     }
     submit(evt) {
         evt.preventDefault();
-        if(this.props.userName){
+        if(this.props.userName && this.props.userPass){
             this.props.history.push(`/user/${this.state.iterator}`);
             this.setState({
                 iterator: this.state.iterator+1,
@@ -43,11 +42,11 @@ class AddUserContainer extends Component {
     }
 
     readUser(evt){
-        this.props.userLogin(this.props.userName,this.props.userPass);
+        this.props.userLogin(this.props.userName);
         return this.props.sendUserName(evt.target.value);
     }
     readPass(evt){
-        // this.props.userLogin(this.props.userName,this.props.userPass);
+        this.props.userPassword(this.props.userPass);
         return this.props.sendPass(evt.target.value);
     }
 
@@ -76,6 +75,7 @@ class AddUserContainer extends Component {
 function mapStateToProps(state) {
     return {
         hasUser: state.hasUser,
+        hasPassword : state.hasPassword,
         userName: state.username,
         userPass: state.password
     }
@@ -85,7 +85,8 @@ function mapDispatchToProps(dispatch) {
         changeVis: bindActionCreators(noteActions.Actions.changeVis, dispatch),
         sendUserName: bindActionCreators(noteActions.Actions.sendUsername, dispatch),
         sendPass: bindActionCreators(noteActions.Actions.sendPass, dispatch),
-        userLogin: bindActionCreators(noteActions.Actions.userLogin, dispatch)
+        userLogin: bindActionCreators(noteActions.Actions.userLogin, dispatch),
+        userPassword: bindActionCreators(noteActions.Actions.userPassword,dispatch)
     }
 }
 export default withRouter(connect(mapStateToProps,mapDispatchToProps)(AddUserContainer));

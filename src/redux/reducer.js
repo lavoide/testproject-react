@@ -93,6 +93,18 @@ export function reducer(state = data, action) {
                 hasUser
             }
         }
+        case noteActions.USER_PASSWORD: {
+            const hasPassword = state.users.findIndex((el, index) => {
+                if(el.password===action.password){
+                    return index;
+                }
+                else return false;
+            });
+            return{
+                ...state,
+                hasPassword
+            }
+        }
         case noteActions.READ_NOTE: {
             return{
                 ...state,

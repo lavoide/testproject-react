@@ -8,7 +8,7 @@ export let data = {
         },
         {
             name: 'John',
-            password: '1234',
+            password: '12345',
             id: 1,
             notes: [
 
@@ -29,13 +29,13 @@ export let data = {
         },
         {
             name: 'Nik',
-            password: '1234',
+            password: '123456',
             id: 3,
             notes: []
         },
         {
             name: 'Bill',
-            password: '1234',
+            password: '1234567',
             id: 4,
             notes: []
         }

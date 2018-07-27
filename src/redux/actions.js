@@ -2,6 +2,7 @@
 export const ADD_NOTE = '[Note] Add';
 export const ADD_USER = '[User] Add';
 export const USER_LOGIN = '[User] Login';
+export const USER_PASSWORD = '[User] Password';
 export const DELETE_NOTE = '[Note] Delete';
 export const EDIT_NOTE = '[Note] Edit';
 export const READ_NOTE = '[Note] Text Updated';
@@ -76,10 +77,15 @@ export class Actions {
             vis
         }
     }
-    static userLogin(username,password){
+    static userLogin(username){
         return {
             type: USER_LOGIN,
-            username,
+            username
+        }
+    }
+    static userPassword(password){
+        return {
+            type: USER_PASSWORD,
             password
         }
     }
