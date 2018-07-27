@@ -72,6 +72,18 @@ export function reducer(state = data, action) {
                 noteColor: editedNote.noteColor
             }
         }
+        case noteActions.USER_LOGIN: {
+            const hasUser = state.users.findIndex((el, index) => {
+                if(el.name===action.username && el.password===action.password){
+                    return index;
+                }
+                else return false;
+            });
+            return{
+                ...state,
+                hasUser
+            }
+        }
         case noteActions.READ_NOTE: {
             return{
                 ...state,
@@ -94,6 +106,12 @@ export function reducer(state = data, action) {
             return{
                 ...state,
                 loginVisibility: action.vis
+            }
+        }
+        case noteActions.FORM_CLICK: {
+            return{
+                ...state,
+                plusVisibility: action.vis
             }
         }
         default:

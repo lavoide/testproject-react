@@ -8,11 +8,11 @@ class AddNoteContainer extends Component {
 
     constructor(props) {
         super(props);
-
         this.submit = this.submit.bind(this);
         this.readNote = this.readNote.bind(this);
         this.readTheme = this.readTheme.bind(this);
         this.readColor = this.readColor.bind(this);
+        this.handler = this.handler.bind(this);
     }
 
     submit(evt) {
@@ -21,11 +21,13 @@ class AddNoteContainer extends Component {
             this.props.submit(this.props.noteText,this.props.noteTheme,this.props.noteColor);
             this.props.readNote('');
             this.props.readTheme('');
-            this.props.readColor(color.YELLOW);
+            this.props.readColor(this.props.noteColor);
         }
         else alert('Wrong values!');
     }
-
+    handler(){
+        this.props.changeVis("none");
+    }
     readNote(evt) {
         return this.props.readNote(evt.target.value);
     }
@@ -52,6 +54,7 @@ class AddNoteContainer extends Component {
     render() {
         return (
             <div className={`note ${this.props.noteColor}`}>
+                <div className={`plus ${this.props.noteColor} ${this.props.visibility}`}><button className="plusButton" onClick={this.handler}>+</button></div>
                 <form className="noteform" onSubmit={this.submit} action="#" >
                     <p>Theme: <input type="text" className={`${this.props.noteColor}`} onChange={this.readTheme} value={this.props.noteTheme}/></p>
                     <textarea className={`${this.props.noteColor}`} onChange={this.readNote} placeholder="Your note text..."
@@ -87,7 +90,8 @@ function mapStateToProps(state) {
         noteText: state.noteText,
         noteTheme: state.noteTheme,
         noteColor: state.noteColor,
-        editedNote: state.editedNote
+        editedNote: state.editedNote,
+        visibility: state.plusVisibility
     }
 }
 
@@ -95,7 +99,8 @@ function mapDispatchToProps(dispatch) {
     return {
         readNote: bindActionCreators(noteActions.Actions.readNote, dispatch),
         readTheme: bindActionCreators(noteActions.Actions.readTheme, dispatch),
-        readColor: bindActionCreators(noteActions.Actions.readColor, dispatch)
+        readColor: bindActionCreators(noteActions.Actions.readColor, dispatch),
+        changeVis: bindActionCreators(noteActions.Actions.changeVisPlus, dispatch)
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(AddNoteContainer);

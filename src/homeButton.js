@@ -11,6 +11,7 @@ class HomeButton extends React.Component{
     }
     handler(){
         this.props.changeVis("active");
+        this.props.changeVisPlus("active");
         this.props.history.push(`/`);
     }
     render(){
@@ -21,7 +22,8 @@ class HomeButton extends React.Component{
 
 function mapDispatchToProps(dispatch) {
     return {
-        changeVis: bindActionCreators(noteActions.Actions.changeVis, dispatch)
+        changeVis: bindActionCreators(noteActions.Actions.changeVis, dispatch),
+        changeVisPlus: bindActionCreators(noteActions.Actions.changeVisPlus, dispatch),
     }
 }
 

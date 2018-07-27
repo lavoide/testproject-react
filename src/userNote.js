@@ -23,7 +23,6 @@ class UserNoteContainer extends React.Component {
         return (
                 <div>
                     <div className="flexwrap">
-                        <div className={`plus ${this.props.noteColor}`}></div>
                         <AddNoteContainer
                             submit={this.addNote1}
                         />
@@ -45,7 +44,7 @@ class UserNoteContainer extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        users: state.users
+        users: state.users,
     }
 }
 

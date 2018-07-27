@@ -13,8 +13,12 @@ class RootRouter extends React.Component{
     constructor(props) {
         super(props);
         this.addUser = this.addUser.bind(this);
+        this.login = this.login.bind(this);
     }
-
+    login(username,password){
+        this.props.changeVis("none");
+        return this.props.userLogin(username,password);
+    }
     addUser(user){
         this.props.changeVis("none");
         return this.props.addUser(user);
@@ -31,6 +35,7 @@ class RootRouter extends React.Component{
                 <div className={`addUser ${this.props.loginVisibility}`}>
                     <AddUserContainer
                         submit={this.addUser}
+                        login={this.login}
                     />
                 </div>
                 <ChooseUserContainer/>
@@ -51,6 +56,7 @@ function mapDispatchToProps(dispatch) {
     return {
         addUser: bindActionCreators(noteActions.Actions.addUser, dispatch),
         changeVis: bindActionCreators(noteActions.Actions.changeVis, dispatch),
+        userLogin: bindActionCreators(noteActions.Actions.userLogin, dispatch)
     }
 }
 
