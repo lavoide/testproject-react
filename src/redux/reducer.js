@@ -44,8 +44,17 @@ export function reducer(state = data, action) {
             }
         }
         case noteActions.ADD_USER: {
-            state.users.push(action.users);
-            return {...state};
+            const newUsers = [...state.users,{
+                id: action.id,
+                name: action.user,
+                password: action.pass,
+                notes: []
+
+            }];
+            return{
+                ...state,
+                users: newUsers
+            }
         }
         case noteActions.EDIT_NOTE: {
             const oldUsers1 = state.users.map((el, index) => {

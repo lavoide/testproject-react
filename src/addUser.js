@@ -47,7 +47,7 @@ class AddUserContainer extends Component {
                 iterator: this.state.iterator+1,
                 user:[]
             });
-            return this.props.submit(this.state.user)
+            return this.props.submit(this.state.iterator,this.state.userName,this.state.userPass)
         }
         else alert('Wrong values!');
     }
@@ -90,5 +90,4 @@ function mapStateToProps(state) {
         hasUser: state.hasUser
     }
 }
-
 export default withRouter(connect(mapStateToProps)(AddUserContainer));

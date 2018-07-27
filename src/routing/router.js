@@ -19,9 +19,9 @@ class RootRouter extends React.Component{
         this.props.changeVis("none");
         return this.props.userLogin(username,password);
     }
-    addUser(user){
+    addUser(id,username,password){
         this.props.changeVis("none");
-        return this.props.addUser(user);
+        return this.props.addUser(id,username,password);
     }
     render(){
         return( <BrowserRouter history={browserHistory}>

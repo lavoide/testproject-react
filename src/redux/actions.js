@@ -22,10 +22,12 @@ export class Actions {
             userId
         }
     }
-    static addUser(users) {
+    static addUser(id,user,pass) {
         return {
             type: ADD_USER,
-            users
+            id,
+            user,
+            pass
         }
     }
     static deleteNote(noteId,userId) {
