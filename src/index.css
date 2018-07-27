@@ -111,7 +111,7 @@ header{
   margin-top: 15px
 }
 .note{
-    font-family: "Courier New";
+  font-family: "Courier New",Courier,monospace;
   max-width: 400px;
   padding: 21px 15px 15px 15px;
   margin: 8px;

@@ -39,5 +39,7 @@ export let data = {
             id: 4,
             notes: []
         }
-    ]
+    ],
+    username: "Anonymous",
+    password: ""
 };
