@@ -9,7 +9,6 @@ class UserNoteContainer extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.addNote1 = this.addNote1.bind(this);
     }
 

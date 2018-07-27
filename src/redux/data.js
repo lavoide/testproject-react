@@ -8,25 +8,34 @@ export let data = {
         },
         {
             name: 'John',
-            password: '',
+            password: '1234',
             id: 1,
-            notes: []
+            notes: [
+
+            ]
         },
         {
             name: 'Ivan',
-            password: '',
+            password: '1234',
             id: 2,
-            notes: []
+            notes: [
+                {
+                    noteText: "This is my note",
+                    noteTheme: "This is my theme",
+                    noteColor: "yellow",
+                    date: new Date().toString().split(' ').splice(1,3).join(' '),
+                }
+            ]
         },
         {
             name: 'Nik',
-            password: '',
+            password: '1234',
             id: 3,
             notes: []
         },
         {
             name: 'Bill',
-            password: '',
+            password: '1234',
             id: 4,
             notes: []
         }

@@ -1,7 +1,6 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import UserNoteContainer from "../userNote";
-import ChooseUserContainer from "../chooseUser";
 import {routeName} from '../constants';
 import AddUserContainer from "../addUser";
 import * as noteActions from "../redux/actions";
@@ -13,12 +12,8 @@ class RootRouter extends React.Component{
     constructor(props) {
         super(props);
         this.addUser = this.addUser.bind(this);
-        this.login = this.login.bind(this);
     }
-    login(username,password){
-        this.props.changeVis("none");
-        return this.props.userLogin(username,password);
-    }
+
     addUser(id,username,password){
         this.props.changeVis("none");
         return this.props.addUser(id,username,password);
@@ -35,10 +30,8 @@ class RootRouter extends React.Component{
                 <div className={`addUser ${this.props.loginVisibility}`}>
                     <AddUserContainer
                         submit={this.addUser}
-                        login={this.login}
                     />
                 </div>
-                <ChooseUserContainer/>
                 <Route exact path={`/${routeName.USER}/:${routeName.ID}`} component={UserNoteContainer}/>
             </div>
         </BrowserRouter>)
@@ -55,8 +48,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         addUser: bindActionCreators(noteActions.Actions.addUser, dispatch),
-        changeVis: bindActionCreators(noteActions.Actions.changeVis, dispatch),
-        userLogin: bindActionCreators(noteActions.Actions.userLogin, dispatch)
+        changeVis: bindActionCreators(noteActions.Actions.changeVis, dispatch)
     }
 }
 

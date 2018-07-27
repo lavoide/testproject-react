@@ -9,6 +9,8 @@ export const READ_THEME = '[Note] Theme Updated';
 export const READ_COLOR = '[Note] Color Updated';
 export const LOGIN_LOGOUT = '[Form] Visibility Changed';
 export const FORM_CLICK = '[Form] Revealed';
+export const FORM_USERNAME = '[Form] Username Changed';
+export const FORM_PASSWORD = '[Form] Password Changed';
 
 
 export class Actions {
@@ -78,6 +80,18 @@ export class Actions {
         return {
             type: USER_LOGIN,
             username,
+            password
+        }
+    }
+    static sendUsername(username){
+        return {
+            type: FORM_USERNAME,
+            username
+        }
+    }
+    static sendPass(password){
+        return {
+            type: FORM_PASSWORD,
             password
         }
     }

@@ -83,7 +83,7 @@ export function reducer(state = data, action) {
         }
         case noteActions.USER_LOGIN: {
             const hasUser = state.users.findIndex((el, index) => {
-                if(el.name===action.username && el.password===action.password){
+                if(el.name===action.username){
                     return index;
                 }
                 else return false;
@@ -121,6 +121,18 @@ export function reducer(state = data, action) {
             return{
                 ...state,
                 plusVisibility: action.vis
+            }
+        }
+        case noteActions.FORM_USERNAME: {
+            return{
+                ...state,
+                username: action.username
+            }
+        }
+        case noteActions.FORM_PASSWORD: {
+            return{
+                ...state,
+                password: action.password
             }
         }
         default:

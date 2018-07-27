@@ -2,13 +2,12 @@ import React, {Component} from 'react';
 import {data} from './redux/data';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import * as noteActions from "./redux/actions";
 
 class AddUserContainer extends Component {
     state = {
         iterator: data.users.slice(-1)[0] ? data.users.slice(-1)[0].id+1 : 0,
-        userName: '',
-        userPass: '',
-        user: []
     };
 
     constructor(props) {
@@ -21,46 +20,35 @@ class AddUserContainer extends Component {
     }
     login(e){
         e.preventDefault();
-        this.props.login(this.state.userName,this.state.userPass);
         if(this.props.hasUser>=0){
+            this.props.userLogin(this.props.userName,this.props.userPass);
             this.props.history.push(`/user/${this.props.hasUser}`);
             this.setState({
-                userName: '',
-                userPass: '',
                 iterator: this.state.iterator+1,
-                user:[]
             });
+            this.props.changeVis("none");
         }
-        else{alert("wrong values!")}
+        else alert("Wrong values!");
     }
     submit(evt) {
         evt.preventDefault();
-        if(this.state.userName){
-            this.state.user.name=this.state.userName;
-            this.state.user.password=this.state.userPass;
-            this.state.user.id=this.state.iterator;
-            this.state.user.notes=[];
+        if(this.props.userName){
             this.props.history.push(`/user/${this.state.iterator}`);
             this.setState({
-                userName: '',
-                userPass: '',
                 iterator: this.state.iterator+1,
-                user:[]
             });
-            return this.props.submit(this.state.iterator,this.state.userName,this.state.userPass)
+            return this.props.submit(this.state.iterator,this.props.userName,this.props.userPass)
         }
         else alert('Wrong values!');
     }
 
     readUser(evt){
-        return this.setState({
-            userName: evt.target.value
-        });
+        this.props.userLogin(this.props.userName,this.props.userPass);
+        return this.props.sendUserName(evt.target.value);
     }
     readPass(evt){
-        return this.setState({
-            userPass: evt.target.value
-        });
+        // this.props.userLogin(this.props.userName,this.props.userPass);
+        return this.props.sendPass(evt.target.value);
     }
 
     render() {
@@ -87,7 +75,17 @@ class AddUserContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        hasUser: state.hasUser
+        hasUser: state.hasUser,
+        userName: state.username,
+        userPass: state.password
     }
 }
-export default withRouter(connect(mapStateToProps)(AddUserContainer));
+function mapDispatchToProps(dispatch) {
+    return {
+        changeVis: bindActionCreators(noteActions.Actions.changeVis, dispatch),
+        sendUserName: bindActionCreators(noteActions.Actions.sendUsername, dispatch),
+        sendPass: bindActionCreators(noteActions.Actions.sendPass, dispatch),
+        userLogin: bindActionCreators(noteActions.Actions.userLogin, dispatch)
+    }
+}
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(AddUserContainer));

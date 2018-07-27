@@ -19,6 +19,7 @@ class EditButtons extends Component {
             return this.props.deleteNote(this.props.id,this.state.user);
     }
     editNote(){
+        this.props.changeVisPlus("none");
         return this.props.editNote(this.props.id,this.state.user);
     }
     render(){
@@ -38,7 +39,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         deleteNote: bindActionCreators(noteActions.Actions.deleteNote, dispatch),
-        editNote: bindActionCreators(noteActions.Actions.editNote, dispatch)
+        editNote: bindActionCreators(noteActions.Actions.editNote, dispatch),
+        changeVisPlus: bindActionCreators(noteActions.Actions.changeVisPlus, dispatch),
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(EditButtons);
