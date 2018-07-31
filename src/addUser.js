@@ -17,11 +17,13 @@ class AddUserContainer extends Component {
         this.readUser = this.readUser.bind(this);
         this.readPass = this.readPass.bind(this);
         this.login = this.login.bind(this);
+        this.inputref=React.createRef();
+        this.passref=React.createRef();
     }
     login(e){
         e.preventDefault();
         if((this.props.hasUser>0)&&(this.props.hasPassword>0)&&(this.props.hasUser===this.props.hasPassword)) {
-            this.props.history.push(`/user/${this.props.hasUser}`);
+            this.props.history.push(`/user/${this.props.userName}`);
             this.setState({
                 iterator: this.state.iterator+1,
             });
@@ -32,7 +34,7 @@ class AddUserContainer extends Component {
     submit(evt) {
         evt.preventDefault();
         if(this.props.userName && this.props.userPass){
-            this.props.history.push(`/user/${this.state.iterator}`);
+            this.props.history.push(`/user/${this.props.userName}`);
             this.setState({
                 iterator: this.state.iterator+1,
             });
@@ -57,11 +59,11 @@ class AddUserContainer extends Component {
                     <p>
                         <label htmlFor="login">Username:</label>
                     </p>
-                    <input type="text" id="login" onChange={this.readUser} value={this.state.userName}/>
+                    <input type="text" id="login" ref={this.inputref} onChange={this.readUser} value={this.state.userName}/>
                     <p>
                         <label htmlFor="password">Password:</label>
                     </p>
-                    <input type="password" id="password" onChange={this.readPass} value={this.state.userPass}/>
+                    <input type="password" id="password" ref={this.passref} onChange={this.readPass} value={this.state.userPass}/>
                     <p className="center">
                         <button className="button" onClick={this.submit}>Register</button>
                         <button className="button" onClick={this.login}>Login</button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import UserNoteContainer from "../userNote";
 import {routeName} from '../constants';
 import AddUserContainer from "../addUser";
@@ -33,8 +33,7 @@ class RootRouter extends React.Component{
                     />
                 </div>
                 <Switch>
-                    <Route exact path={`/${routeName.USER}/:${routeName.ID}`} component={UserNoteContainer}/>
-                    <Redirect to="/"/>
+                    <Route exact path={`/${routeName.USER}/:${routeName.NAME}`} component={UserNoteContainer}/>
                 </Switch>
             </div>
         </BrowserRouter>)
