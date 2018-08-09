@@ -26,7 +26,7 @@ class EditButtons extends Component {
         return(
             <div className="editbuttons">
                 <button className="button" onClick={this.editNote}>edit</button>
-                <button className="button" onClick={this.deleteNote1} >X</button>
+                <button className="button" onClick={this.deleteNote1} title={"Delete"} >X</button>
             </div>)
     }
 }

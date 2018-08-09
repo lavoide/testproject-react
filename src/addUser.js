@@ -23,7 +23,7 @@ class AddUserContainer extends Component {
     login(e){
         e.preventDefault();
         if((this.props.hasUser>0)&&(this.props.hasPassword>0)&&(this.props.hasUser===this.props.hasPassword)) {
-            this.props.history.push(`/user/${this.props.userName}`);
+            this.props.history.push(`/user/${this.state.iterator}`);
             this.setState({
                 iterator: this.state.iterator+1,
             });
@@ -34,7 +34,7 @@ class AddUserContainer extends Component {
     submit(evt) {
         evt.preventDefault();
         if(this.props.userName && this.props.userPass){
-            this.props.history.push(`/user/${this.props.userName}`);
+            this.props.history.push(`/user/${this.state.iterator}`);
             this.setState({
                 iterator: this.state.iterator+1,
             });

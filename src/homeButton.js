@@ -15,7 +15,7 @@ class HomeButton extends React.Component{
         this.props.history.push(`/`);
     }
     render(){
-        return <button className="home" onClick={this.handler}>&#8962;</button>
+        return <button className="home" onClick={this.handler} title={"Log out"}>&#8962;</button>
     }
 }
 

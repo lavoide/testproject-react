@@ -33,7 +33,7 @@ class RootRouter extends React.Component{
                     />
                 </div>
                 <Switch>
-                    <Route exact path={`/${routeName.USER}/:${routeName.NAME}`} component={UserNoteContainer}/>
+                    <Route exact path={`/${routeName.USER}/:${routeName.ID}`} component={UserNoteContainer}/>
                 </Switch>
             </div>
         </BrowserRouter>)
