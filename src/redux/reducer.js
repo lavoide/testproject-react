@@ -102,6 +102,7 @@ export function reducer(state = data, action) {
             });
             return{
                 ...state,
+                ...state,
                 hasPassword
             }
         }

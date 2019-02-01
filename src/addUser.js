@@ -17,8 +17,12 @@ class AddUserContainer extends Component {
         this.readUser = this.readUser.bind(this);
         this.readPass = this.readPass.bind(this);
         this.login = this.login.bind(this);
-        this.inputref=React.createRef();
-        this.passref=React.createRef();
+        this.check = this.check.bind(this);
+    }
+    check(e){
+        e.preventDefault();
+        this.props.userLogin(this.props.userName);
+        this.props.userPassword(this.props.userPass);
     }
     login(e){
         e.preventDefault();
@@ -44,14 +48,13 @@ class AddUserContainer extends Component {
     }
 
     readUser(evt){
-        this.props.userLogin(this.props.userName);
+        // this.props.userLogin(this.props.userName);
         return this.props.sendUserName(evt.target.value);
     }
     readPass(evt){
-        this.props.userPassword(this.props.userPass);
+        // this.props.userPassword(this.props.userPass);
         return this.props.sendPass(evt.target.value);
     }
-
     render() {
         return (
             <div className="login">
@@ -59,14 +62,15 @@ class AddUserContainer extends Component {
                     <p>
                         <label htmlFor="login">Username:</label>
                     </p>
-                    <input type="text" id="login" ref={this.inputref} onChange={this.readUser} value={this.state.userName}/>
+                    <input type="text" id="login" onChange={this.readUser} value={this.state.userName}/>
                     <p>
                         <label htmlFor="password">Password:</label>
                     </p>
-                    <input type="password" id="password" ref={this.passref} onChange={this.readPass} value={this.state.userPass}/>
+                    <input type="password" id="password" onChange={this.readPass} value={this.state.userPass}/>
                     <p className="center">
                         <button className="button" onClick={this.submit}>Register</button>
                         <button className="button" onClick={this.login}>Login</button>
+                        <button className="button" onClick={this.check}>Check</button>
                     </p>
                 </form>
             </div>
