@@ -6,7 +6,7 @@
     "browserify-fs": "^1.0.0",
     "create-react-app": "^1.5.2",
     "file-saver": "^1.3.8",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
